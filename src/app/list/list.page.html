@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon name="trash" (click)="deleteAllSecrets()" style="width: 25px; height: 25px;"></ion-icon>
+    </ion-buttons>
+    <ion-title>Tus Secretos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <h2 style="text-align: center;"><b>Tus secretos!</b></h2>
+    <ion-item-sliding *ngFor="let i of secrets">
+      <ion-item-options side="start">
+        <ion-item-option (click)="presentModal(i)">Ver</ion-item-option>
+      </ion-item-options>
+
+      <ion-item>
+        <ion-label>{{i.nombre}}</ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteSecret(i.id)">Borrar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

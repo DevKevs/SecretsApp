@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-sharp"(click)="dismiss()" style="width: 30px; height: 30px;"></ion-icon>
+    </ion-buttons>
+    <ion-title>Secreto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 10px;">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Evidencia</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <img [src]="entity.foto">
+      </ion-card-content>
+    </ion-card>
+    <h2 style="text-align: center;"><b>{{entity.nombre}}</b></h2>
+    <p>{{entity.descripcion}}</p>
+    <audio style="margin: 0 auto; display: table;" *ngIf="entity.audio" controls>
+      <source [src]="getAudioContent(entity.audio)">
+          Tu navegador no soporta audio HTML5.
+    </audio>
+    <ion-list>
+      <ion-item>
+        <h4>Fecha:</h4>
+        <ion-badge>{{entity.fecha}}</ion-badge>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

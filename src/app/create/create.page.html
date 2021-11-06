@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crear secreto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-datetime [(ngModel)]="fecha" monthValues="1,2,3,4,5,6,7,8,9,10,11,12" yearValues={{customYearValues}} dayValues="01,02,03,04,05,06,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30" displayFormat="DD/MMM/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-textarea [(ngModel)]="desc" rows="4"></ion-textarea>
+    </ion-item>
+    <div style="padding: 10px;">
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="danger" (click)="takePicture()">Tomar <ion-icon name="camera" icon-right></ion-icon></ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="success" (click)="loadPicture()">Subir <ion-icon name="image" icon-right></ion-icon></ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label><b>Grabar un audio</b></ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label id="record" style="float: right;"><b>{{estado}}</b></ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="success" (click)="grabar()"> <ion-icon name="mic"></ion-icon></ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="warning" (click)="detener()"> <ion-icon name="square"></ion-icon></ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="danger" (click)="eliminar()"> <ion-icon name="trash"></ion-icon></ion-button>
+        </ion-col>
+      </ion-row>
+      <audio style="margin: 0 auto; display: table;" *ngIf="audio" controls>
+        <source [src]="getAudioContent(audio.recordDataBase64)">
+            Tu navegador no soporta audio HTML5.
+      </audio>
+      <ion-button expand="block" (click)="addSecret()">Guardar</ion-button>
+      <img [src]="base64Image">
+    </div>
+  </ion-list>
+</ion-content>
